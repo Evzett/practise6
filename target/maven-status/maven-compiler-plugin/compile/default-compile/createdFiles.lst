@@ -1,0 +1,5 @@
+model\Furniture.class
+com\example\repository\FurnitureRepository.class
+com\example\Application.class
+com\example\service\FurnitureService.class
+console\ConsoleApp.class
