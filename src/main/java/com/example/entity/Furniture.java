@@ -1,7 +1,7 @@
 package com.example.entity;
 
-
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 
 @Entity
@@ -9,10 +9,20 @@ import jakarta.persistence.*;
 public class Furniture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer id;
-    public String name;
-    public String type;
-    public double price;
+    private Integer id;
+
+    @NotBlank(message = "Название не должно быть пустым")
+    @Size(min = 2, max = 40, message = "Название должно быть длиной от 2х до 40 символов")
+    private String name;
+
+    @NotBlank(message = "Тип не может быть пустым")
+    @Size(min = 2, max = 40, message = "Тип должен быть длиной от 2х до 40 символов")
+    private String type;
+
+    @NotNull(message = "Цена обязательна")
+    @Positive(message = "Цена должна быть больше 0")
+    private Double price;
+    
 
 
     public Furniture()    {
@@ -26,9 +36,6 @@ public class Furniture {
     }
 
     public void setId(Integer id) {
-        if (id != null && id < 0) {
-            throw new IllegalArgumentException("ID cannot be negative");
-        }
         this.id = id;
     }
 
@@ -48,13 +55,10 @@ public class Furniture {
     public String getType() {
         return type;
     }
-    public void setPrice(double price) {
-        if (price < 0) {
-            throw new IllegalArgumentException("Price cannot be negative");
-        }
+    public void setPrice(Double price) {
         this.price = price;
     }
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 

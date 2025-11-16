@@ -30,21 +30,28 @@ public class FurnitureService {
         repository.deleteById(id);
     }
 
-    public void updateFurniture(Integer id, String name, String type, double price) {
-        Optional<Furniture> furnitureOptional = repository.findById(id);
-        if (furnitureOptional.isPresent()) {
-            Furniture furniture = furnitureOptional.get();
-            furniture.setName(name);
-            furniture.setType(type);
-            furniture.setPrice(price);
-            repository.save(furniture);
-        } else {
-            System.out.println("Запись с таким ID не найдена.");
-        }
+    public void updateFurniture(Integer id, Furniture updated) {
+        Furniture existing = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Не найдено"));
+    
+        existing.setName(updated.getName());
+        existing.setType(updated.getType());
+        existing.setPrice(updated.getPrice());
+    
+        repository.save(existing);
+    }
+    
+
+    public Furniture getFurnitureById(Integer id) {
+        return repository.findById(id).orElse(null);
     }
 
     public List<Furniture> searchByPrice(double minPrice) {
         return repository.findByPriceGreaterThan(minPrice);
+    }
+
+    public List<Furniture> searchByTypeAndPrice(String type, double minPrice){
+        return repository.findByTypeAndPriceGreaterThan(type, minPrice);
     }
 
     public List<Furniture> searchByType(String type) {

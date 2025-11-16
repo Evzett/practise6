@@ -12,4 +12,7 @@ public interface FurnitureRepository extends JpaRepository<Furniture, Integer> {
     
 
     List<Furniture> findByType(String type);
+    
+    List<Furniture> findByTypeAndPriceGreaterThan(String type, double price);
+
 }
