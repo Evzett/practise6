@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список мебели</title>
+</head>
+<body>
+
+<h1>Список мебели</h1>
+
+<a th:href="@{/}">Главная</a>
+<a th:href="@{/furniture/new}" style="margin-left:20px;">Добавить мебель</a>
+
+<br><br>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Тип</th>
+        <th>Цена</th>
+        <th>Действия</th>
+    </tr>
+
+    <!-- Цикл по списку мебели -->
+    <tr th:each="f : ${furnitureList}">
+        <td th:text="${f.id}"></td>
+        <td th:text="${f.name}"></td>
+        <td th:text="${f.type}"></td>
+        <td th:text="${f.price}"></td>
+        <td>
+            <a th:href="@{/furniture/{id}/edit(id=${f.id})}">Редактировать</a>
+            &nbsp;|&nbsp;
+            <a th:href="@{/furniture/{id}/delete(id=${f.id})}">Удалить</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

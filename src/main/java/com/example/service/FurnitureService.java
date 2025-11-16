@@ -1,7 +1,9 @@
 package com.example.service;
 
-import model.Furniture;
 import com.example.repository.FurnitureRepository;
+
+import com.example.entity.Furniture;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

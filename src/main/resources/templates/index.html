@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Furniture App</title>
+</head>
+<body>
+
+<h1>Добро пожаловать в систему учета мебели</h1>
+<p>Выберите действие:</p>
+
+<ul>
+    <li><a th:href="@{/furniture}">Просмотр таблицы мебели</a></li>
+    <li><a th:href="@{/furniture/new}">Добавить новую мебель</a></li>
+    <li><a th:href="@{/furniture/search}">Поиск мебели по критерию</a></li>
+    <!-- Эти два по сути ведут из списка, но можно дублировать -->
+    <li><a th:href="@{/furniture}">Редактировать запись (выбор из списка)</a></li>
+    <li><a th:href="@{/furniture}">Удалить запись (выбор из списка)</a></li>
+</ul>
+
+</body>
+</html>
