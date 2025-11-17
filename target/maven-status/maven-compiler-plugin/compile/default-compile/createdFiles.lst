@@ -1,4 +1,11 @@
 com\example\controller\AuthController.class
+com\example\Application.class
+com\example\config\AdminInitializer.class
+com\example\controller\FurnitureController.class
+com\example\service\FurnitureService.class
 com\example\config\SecurityConfig.class
 com\example\entity\Furniture.class
+com\example\repository\UserRepository.class
+com\example\service\UserService.class
 com\example\entity\UserEntity.class
+com\example\repository\FurnitureRepository.class
