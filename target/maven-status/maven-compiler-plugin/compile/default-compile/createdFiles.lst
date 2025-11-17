@@ -1,5 +1,4 @@
-com\example\Application.class
-com\example\controller\FurnitureController.class
-com\example\service\FurnitureService.class
-com\example\repository\FurnitureRepository.class
+com\example\controller\AuthController.class
+com\example\config\SecurityConfig.class
 com\example\entity\Furniture.class
+com\example\entity\UserEntity.class

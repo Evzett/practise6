@@ -1,5 +1,7 @@
 package com.example.entity;
 
+import java.util.UUID;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -8,7 +10,7 @@ import jakarta.validation.constraints.*;
 @Table(name = "furniture")
 public class Furniture {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)   // <--- ВАЖНО
     private Integer id;
 
     @NotBlank(message = "Название не должно быть пустым")
