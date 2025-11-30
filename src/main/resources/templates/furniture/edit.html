@@ -88,7 +88,12 @@
 
         </form>
 
-        <a th:href="@{/}" class="btn btn-link mt-3">На главную</a>
+        <div class="d-flex justify-content-between mt-3">
+            <a th:href="@{/}" class="btn btn-link">На главную</a>
+            <form th:action="@{/logout}" method="post" style="display: inline;">
+                <button type="submit" class="btn btn-outline-danger">Выйти</button>
+            </form>
+        </div>
 
     </div>
 </div>

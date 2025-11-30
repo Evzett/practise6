@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Furniture App</title>
@@ -44,6 +45,13 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
 
+            <!-- Кнопка выхода -->
+            <div class="text-end mb-3">
+                <form th:action="@{/logout}" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-outline-danger">Выйти</button>
+                </form>
+            </div>
+
             <div class="card shadow p-5">
                 <h1 class="text-center mb-4">Добро пожаловать в систему учета мебели</h1>
                 <p class="text-center mb-4">Выберите действие:</p>
@@ -58,23 +66,24 @@
 
                     <div class="col-md-4 col-sm-6">
                         <div class="card menu-card">
-                            <a th:href="@{/furniture/new}">Добавить новую мебель</a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-6">
-                        <div class="card menu-card">
                             <a th:href="@{/furniture/search}">Поиск мебели по критерию</a>
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-sm-6">
+                    <!-- Админские функции - только для ADMIN -->
+                    <div class="col-md-4 col-sm-6" sec:authorize="hasRole('ADMIN')">
+                        <div class="card menu-card">
+                            <a th:href="@{/furniture/new}">Добавить новую мебель</a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6" sec:authorize="hasRole('ADMIN')">
                         <div class="card menu-card">
                             <a th:href="@{/furniture}">Редактировать запись</a>
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-sm-6">
+                    <div class="col-md-4 col-sm-6" sec:authorize="hasRole('ADMIN')">
                         <div class="card menu-card">
                             <a th:href="@{/furniture}">Удалить запись</a>
                         </div>

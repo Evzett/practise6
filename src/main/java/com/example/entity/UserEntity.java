@@ -15,7 +15,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "users")
 @ToString(exclude = "password")
-@Access(AccessType.FIELD)
 public class UserEntity {
     @Id
     @Column(columnDefinition = "uuid", updatable = false, nullable = false)

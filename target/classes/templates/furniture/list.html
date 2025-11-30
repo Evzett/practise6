@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Список мебели</title>
@@ -45,7 +46,13 @@
 
         <div>
             <a th:href="@{/}" class="btn btn-link">Главная</a>
-            <a th:href="@{/furniture/new}" class="btn btn-orange">Добавить мебель</a>
+            <a th:href="@{/furniture/search}" class="btn btn-link">Поиск</a>
+            <!-- Кнопка добавления только для ADMIN -->
+            <a th:href="@{/furniture/new}" class="btn btn-orange" sec:authorize="hasRole('ADMIN')">Добавить мебель</a>
+            <!-- Кнопка выхода -->
+            <form th:action="@{/logout}" method="post" style="display: inline; margin-left: 10px;">
+                <button type="submit" class="btn btn-outline-danger">Выйти</button>
+            </form>
         </div>
     </div>
 
@@ -68,17 +75,21 @@
                     <td th:text="${f.type}"></td>
                     <td th:text="${f.price} + ' ₽'"></td>
                     <td class="text-center">
-
+                        <!-- Кнопки редактирования и удаления только для ADMIN -->
                         <a th:href="@{/furniture/{id}/edit(id=${f.id})}" 
-                           class="btn btn-sm btn-warning me-2">
+                           class="btn btn-sm btn-warning me-2"
+                           sec:authorize="hasRole('ADMIN')">
                             Редактировать
                         </a>
 
                         <a th:href="@{/furniture/{id}/delete(id=${f.id})}" 
                            class="btn btn-sm btn-danger"
+                           sec:authorize="hasRole('ADMIN')"
                            onclick="return confirm('Удалить элемент?');">
                              Удалить
                         </a>
+                        <!-- Для обычных пользователей показываем только просмотр -->
+                        <span sec:authorize="!hasRole('ADMIN')" class="text-muted">Только просмотр</span>
                     </td>
                 </tr>
             </tbody>
